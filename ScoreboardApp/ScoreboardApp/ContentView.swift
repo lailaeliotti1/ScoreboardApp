@@ -21,6 +21,8 @@ struct ContentView: View {
                     .padding()
                 topScoreboard()
                 displayClock()
+                timerControlButton()
+                
             }
         }
         .padding()
@@ -36,18 +38,6 @@ struct ContentView: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .padding([.bottom, .trailing], 225)
-                
-                Button(action: {
-                    if isClockRunning {
-                        isClockRunning = false
-                    } else {
-                        isClockRunning = true
-                        startClock()
-                    }
-                
-                }) {
-                    Text(isClockRunning ? "Game ON" : "Timeout")
-                }
                 
                 
                 Text("Away")
@@ -65,28 +55,40 @@ struct ContentView: View {
        }
     
     mutating func toggleTimer() {
-           if isClockRunning {
-               stopClock()
-           } else {
-               startClock()
-           }
            isClockRunning.toggle()
+           
+           if !isClockRunning {
+               stopTimer() // Stop the timer when toggling to off
+           }
        }
     
-    func startClock() {
+    mutating func startTimer() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
             } else {
-                timer.stopClock();
+                stopTimer();
             }
         }
     }
     
-    mutating func stopClock() {
+    mutating func stopTimer() {
         timer?.invalidate()
         timer = nil
     }
+    
+    mutating func timerControlButton() -> some View {
+            return Button(action: {
+                toggleTimer()
+            }) {
+                Text(isClockRunning ? "Game ON" : "Timeout")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+        }
     
 }
 
