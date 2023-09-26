@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isClockRunning = false
-    @State private var timeRemaining = 600 //ten minutes in sec
-    private var timer: Timer?
+    @StateObject private var vm = ViewModel()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let width: Double = 250
+
     var body: some View {
         ZStack {
             Color(.black).edgesIgnoringSafeArea(.all)
@@ -20,9 +21,6 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .padding()
                 topScoreboard()
-                displayClock()
-                timerControlButton()
-                
             }
         }
         .padding()
@@ -33,63 +31,58 @@ struct ContentView: View {
             Rectangle()
                 .stroke(.blue, lineWidth: 2)
                 .frame(width: 400, height: 300)
-            HStack{
-                Text("Home")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding([.bottom, .trailing], 225)
-                
-                
-                Text("Away")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding(.leading, 25)
-                    .padding(.bottom, 225)
+            VStack {
+                HStack{
+                    Text("Home")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+                    
+                    displayTimer()
+                    
+                    Text("Away")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding()
+        
+                }
+                startStopButton()
             }
         }
     }
     
-    func displayClock() -> some View {
-           return Text("\(timeRemaining / 60):\(timeRemaining % 60)")
-               .font(.largeTitle)
-       }
-    
-    mutating func toggleTimer() {
-           isClockRunning.toggle()
-           
-           if !isClockRunning {
-               stopTimer() // Stop the timer when toggling to off
-           }
-       }
-    
-    mutating func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            if self.timeRemaining > 0 {
-                self.timeRemaining -= 1
-            } else {
-                stopTimer();
-            }
+    func displayTimer() -> some View {
+        VStack{
+            Text("\(vm.time)")
+                .font(.system(size: 70, weight: .medium, design: .rounded))
+                .padding()
+                .frame(width: width)
+                .background(.thinMaterial)
+                .cornerRadius(20)
+                .overlay(RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.gray, lineWidth: 4))
+                .alert("Times up!", isPresented: $vm.showingAlert){
+                    Button("Continue", role: .cancel){
+                        //may add a notification later
+                    }
+                }
+            Slider(value: $vm.minutes, in: 1...10, step: 1)
+                .disabled(vm.isActive)
+                .animation(.easeOut, value: vm.minutes)
         }
+        .onReceive(timer) { _ in
+            vm.updateCountdown()}
     }
     
-    mutating func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    mutating func timerControlButton() -> some View {
-            return Button(action: {
-                toggleTimer()
-            }) {
-                Text(isClockRunning ? "Game ON" : "Timeout")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
+    func startStopButton() -> some View {
+        HStack(spacing: 50) {
+            Button("Start") {
+                vm.start(minutes: vm.minutes)
             }
+            Button("Reset", action: vm.reset)
+                .tint(.red)
         }
-    
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

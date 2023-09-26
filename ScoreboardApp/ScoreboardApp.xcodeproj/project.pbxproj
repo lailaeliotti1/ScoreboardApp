@@ -14,6 +14,7 @@
 		000BF0262AA90937006AFA29 /* ScoreboardAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000BF0252AA90937006AFA29 /* ScoreboardAppTests.swift */; };
 		000BF0302AA90937006AFA29 /* ScoreboardAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000BF02F2AA90937006AFA29 /* ScoreboardAppUITests.swift */; };
 		000BF0322AA90937006AFA29 /* ScoreboardAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000BF0312AA90937006AFA29 /* ScoreboardAppUITestsLaunchTests.swift */; };
+		001D70A82AC20531000FCB9E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001D70A72AC20531000FCB9E /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		000BF02B2AA90937006AFA29 /* ScoreboardAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScoreboardAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000BF02F2AA90937006AFA29 /* ScoreboardAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardAppUITests.swift; sourceTree = "<group>"; };
 		000BF0312AA90937006AFA29 /* ScoreboardAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		001D70A72AC20531000FCB9E /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				000BF0142AA90935006AFA29 /* ScoreboardAppApp.swift */,
 				000BF0162AA90935006AFA29 /* ContentView.swift */,
+				001D70A72AC20531000FCB9E /* Timer.swift */,
 				000BF0182AA90936006AFA29 /* Assets.xcassets */,
 				000BF01A2AA90936006AFA29 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001D70A82AC20531000FCB9E /* Timer.swift in Sources */,
 				000BF0172AA90935006AFA29 /* ContentView.swift in Sources */,
 				000BF0152AA90935006AFA29 /* ScoreboardAppApp.swift in Sources */,
 			);
