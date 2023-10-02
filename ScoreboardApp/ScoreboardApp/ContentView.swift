@@ -14,7 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            Color(.black).edgesIgnoringSafeArea(.all)
+            Color(.black)
             VStack{
                 Text("Scoreboard")
                     .foregroundColor(.gray)
@@ -33,17 +33,46 @@ struct ContentView: View {
                 .frame(width: 400, height: 300)
             VStack {
                 HStack{
-                    Text("Home")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding()
+                    VStack {
+                        Text("Home")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding()
+                        Image(systemName: "person.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.white)
+                            .padding()
+                        Text("Team Name")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding()
+                        }
+                        .frame(width: 125, height: 200)
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                        
                     
                     displayTimer()
                     
-                    Text("Away")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding()
+                    VStack {
+                        Text("Away")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding()
+                        Image(systemName: "person.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.white)
+                            .padding()
+                        Text("Team Name")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding()
+                        }
+                        .frame(width: 125, height: 200)
+                        .background(Color.red)
+                        .cornerRadius(20)
         
                 }
                 startStopButton()
