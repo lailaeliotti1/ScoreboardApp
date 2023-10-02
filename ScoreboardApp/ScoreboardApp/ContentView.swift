@@ -70,7 +70,7 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .padding()
                         }
-                        .frame(width: 125, height: 200)
+                        .frame(width: 125, height: 200
                         .background(Color.red)
                         .cornerRadius(20)
         
