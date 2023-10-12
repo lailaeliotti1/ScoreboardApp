@@ -51,6 +51,7 @@ struct ContentView: View {
                         .frame(width: 125, height: 200)
                         .background(Color.blue)
                         .cornerRadius(20)
+                    
                         
                     
                     displayTimer()
