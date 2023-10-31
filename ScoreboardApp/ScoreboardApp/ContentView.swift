@@ -11,6 +11,9 @@ struct ContentView: View {
     @StateObject private var vm = ViewModel()
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let width: Double = 250
+    
+    @State private var homeScore = 0
+    @State private var awayScore = 0
 
     var body: some View {
         ZStack {
@@ -43,11 +46,14 @@ struct ContentView: View {
                             .frame(width: 50, height: 50)
                             .foregroundColor(.white)
                             .padding()
-                        Text("Team Name")
-                            .fontWeight(.semibold)
+                        Text("\(homeScore)")
+                            .font(.title)
                             .foregroundColor(.white)
                             .padding()
+                        Button("Increase Home Score") {
+                            homeScore += 1
                         }
+                    }
                         .frame(width: 125, height: 200)
                         .background(Color.blue)
                         .cornerRadius(20)
@@ -56,20 +62,23 @@ struct ContentView: View {
                     
                     displayTimer()
                     
-                    VStack {
-                        Text("Away")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding()
-                        Image(systemName: "person.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.white)
-                            .padding()
-                        Text("Team Name")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding()
+                        VStack {
+                            Text("Away")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding()
+                            Image(systemName: "person.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.white)
+                                .padding()
+                            Text("\(awayScore)")
+                                .font(.title)
+                                .foregroundColor(.white)
+                                .padding()
+                            Button("Increase Away Score") {
+                                awayScore += 1
+                            }
                         }
                         .frame(width: 125, height: 200)
                         .background(Color.red)
