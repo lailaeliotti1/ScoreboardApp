@@ -22,7 +22,6 @@ struct ContentView: View {
                 Text("Scoreboard")
                     .foregroundColor(.gray)
                     .font(.largeTitle)
-                    .padding()
                 topScoreboard()
             }
         }
@@ -40,18 +39,18 @@ struct ContentView: View {
                         Text("Home")
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            .padding()
                         Image(systemName: "person.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(.white)
-                            .padding()
                         Text("\(homeScore)")
                             .font(.title)
                             .foregroundColor(.white)
-                            .padding()
-                        Button("Increase Home Score") {
+                        Button(action: {
                             homeScore += 1
+                        }) {
+                            Text("Increase Home Score")
+                                .foregroundColor(.red)
                         }
                     }
                         .frame(width: 125, height: 200)
@@ -66,16 +65,14 @@ struct ContentView: View {
                             Text("Away")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
-                                .padding()
                             Image(systemName: "person.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(.white)
-                                .padding()
                             Text("\(awayScore)")
                                 .font(.title)
                                 .foregroundColor(.white)
-                                .padding()
+                        
                             Button("Increase Away Score") {
                                 awayScore += 1
                             }
