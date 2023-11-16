@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  ScoreboardApp
-//
-//  Created by Laila Eliotti on 9/6/23.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -17,22 +10,16 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            Color(.black)
-            VStack{
-                Text("Scoreboard")
-                    .foregroundColor(.gray)
-                    .font(.largeTitle)
-                topScoreboard()
-            }
+            Color.black
+                .ignoresSafeArea()
+            topScoreboard()
+                .padding()
+            Spacer()
         }
-        .padding()
     }
     
     func topScoreboard() -> some View {
         return ZStack{
-            Rectangle()
-                .stroke(.blue, lineWidth: 2)
-                .frame(width: 400, height: 300)
             VStack {
                 HStack{
                     VStack {
